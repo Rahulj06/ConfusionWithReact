@@ -24,7 +24,7 @@ import CommentForm from './CommentForm';
         }
     }
 
-    function RenderComments({comments}){
+    function RenderComments({comments, addComment, dishId}){
         console.log(comments);
         if (comments != null)
             return(
@@ -48,7 +48,7 @@ import CommentForm from './CommentForm';
                         }
                         )}
                     </ul>
-                    <CommentForm />
+                    <CommentForm dishId={dishId} addComment={addComment}/>
                 </div>
             );
             else
@@ -65,7 +65,10 @@ import CommentForm from './CommentForm';
         }
 
         const dishItem = <RenderDish dish={props.dish}/>
-        const dishComment = <RenderComments comments={props.comments}/>
+        const dishComment = <RenderComments comments={props.comments}
+                                    addComment={props.addComment}
+                                    dishId={props.dish.id}
+                            />
 
         return (
             <div className="container">
