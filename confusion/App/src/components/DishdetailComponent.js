@@ -3,13 +3,14 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbIte
 import { Link } from 'react-router-dom';
 import CommentForm from './CommentForm';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
     function RenderDish({dish}) {
         if(dish!=null){
             return (
                 <div className='col-12 col-md-5 m-1'>
                     <Card>
-                        <CardImg width="100%" src={dish.image} alt={dish.name} />
+                        <CardImg top src={baseUrl + dish.image} alt={dish.name} />
                         <CardBody>
                             <CardTitle> {dish.name}</CardTitle>
                             <CardText> {dish.description} </CardText>
@@ -25,7 +26,7 @@ import { Loading } from './LoadingComponent';
         }
     }
 
-    function RenderComments({comments, addComment, dishId}){
+    function RenderComments({comments, postComment, dishId}){
         console.log(comments);
         if (comments != null)
             return(
@@ -49,7 +50,7 @@ import { Loading } from './LoadingComponent';
                         }
                         )}
                     </ul>
-                    <CommentForm dishId={dishId} addComment={addComment}/>
+                    <CommentForm dishId={dishId} postComment={postComment}/>
                 </div>
             );
             else
@@ -81,7 +82,7 @@ import { Loading } from './LoadingComponent';
         else if (props.dish != null) {
         const dishItem = <RenderDish dish={props.dish}/>
         const dishComment = <RenderComments comments={props.comments}
-                                    addComment={props.addComment}
+                                    postComment={props.postComment}
                                     dishId={props.dish.id}
                             />
 
